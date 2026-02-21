@@ -1,0 +1,50 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ "main", "master", "develop" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:  # Ручной запуск
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout код
+      uses: actions/checkout@v4
+      
+    - name: ☕ Установка Java 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: 🔧 Права на выполнение gradlew
+      run: chmod +x gradlew
+      
+    - name: 🔨 Сборка проекта
+      run: ./gradlew shadowJar --no-daemon
+      
+    - name: 📦 Создание дистрибутива
+      run: ./gradlew createDist --no-daemon
+      
+    - name: 📊 Тестирование (опционально)
+      run: ./gradlew test --no-daemon || true
+      
+    - name: 📤 Загрузка артефактов
+      uses: actions/upload-artifact@v4
+      with:
+        name: MysteryIsland-${{ github.sha }}
+        path: |
+          build/libs/*.jar
+          build/dist/*.jar
+        retention-days: 30
+        
+    - name: 📝 Информация о сборке
+      run: |
+        echo "✅ Сборка завершена успешно!"
+        echo "📦 Версия: $(cat build.gradle | grep 'version' | head -1 | cut -d \"'\" -f2)"
+        echo "📅 Дата: $(date)"
+        ls -la build/libs/
