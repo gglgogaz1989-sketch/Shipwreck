@@ -51,8 +51,25 @@ public enum ItemType {
     RAW_MEAT("Сырое мясо", "🥩", 3, ItemCategory.FOOD),
     RAW_FISH("Сырая рыба", "🐟", 2, ItemCategory.FOOD),
     FISH("Рыба", "🐠", 4, ItemCategory.FOOD),
+
+// ПРИГОТОВЛЕННАЯ ЕДА
+COOKED_MEAT("Приготовленное мясо", "🍖", 8, ItemCategory.FOOD),
+COOKED_FISH("Приготовленная рыба", "🐟", 6, ItemCategory.FOOD),
+DRIED_BERRY("Сушёные ягоды", "🫐", 3, ItemCategory.FOOD),
+ROASTED_COCONUT("Жареный кокос", "🥥", 10, ItemCategory.FOOD),
+BOILED_WATER("Кипячёная вода", "💧", 2, ItemCategory.FOOD),
+COOKED_EGG("Яичница", "🍳", 5, ItemCategory.FOOD),
+
+// ТОПЛИВО
+CHARCOAL("Древесный уголь", "⚫", 4, ItemCategory.RESOURCE),
+DRIED_GRASS("Сухая трава", "🌾", 1, ItemCategory.RESOURCE),
+
+// ОСОБЫЕ
+BLESSING_STONE("Камень благословения", "🔮", 50, ItemCategory.GEM),
+SAND("Песок", "⏳", 1, ItemCategory.RESOURCE),
+RAW_EGG("Яйцо", "🥚", 3, ItemCategory.FOOD),
     
-    // ОСОБЫЕ
+    // напитки
     WATER("Вода", "💧", 1, ItemCategory.LIQUID),
     OIL("Нефть", "🛢️", 5, ItemCategory.LIQUID),
     POPYE("Попьё", "🧃", 2, ItemCategory.FOOD);  // напиток
@@ -68,7 +85,6 @@ public enum ItemType {
         this.baseValue = baseValue;
         this.category = category;
     }
-    
     public String getDisplayName() { return displayName; }
     public String getIcon() { return icon; }
     public int getBaseValue() { return baseValue; }
