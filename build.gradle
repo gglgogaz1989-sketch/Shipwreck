@@ -17,20 +17,11 @@ repositories {
 }
 
 dependencies {
-    // Jackson для JSON
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.16.1'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.16.1'
-    
-    // JLine для консоли
     implementation 'org.jline:jline:3.24.1'
-    
-    // Логгирование
     implementation 'org.slf4j:slf4j-simple:2.0.9'
-    
-    // JUnit для тестов (опционально)
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.1'
 }
 
 application {
@@ -56,9 +47,4 @@ shadowJar {
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
-    options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
-}
-
-test {
-    useJUnitPlatform()
 }
