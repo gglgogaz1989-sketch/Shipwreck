@@ -23,23 +23,22 @@ jobs:
     - name: 🔧 Права на выполнение
       run: chmod +x gradlew || true
       
-    - name: 🔨 Сборка проекта
+    - name: 🔨 Сборка APK
       run: |
         if [ -f gradlew ]; then
-          ./gradlew shadowJar --no-daemon
+          ./gradlew assembleRelease --no-daemon
         else
-          gradle shadowJar --no-daemon
+          gradle assembleRelease --no-daemon
         fi
       
-    - name: 📤 Загрузка артефактов
+    - name: 📤 Загрузка APK
       uses: actions/upload-artifact@v4
       with:
-        name: MysteryIsland
-        path: build/libs/*.jar
+        name: MysteryIsland-APK
+        path: app/build/outputs/apk/release/*.apk
         retention-days: 30
         
     - name: 📝 Информация о сборке
       run: |
-        echo "✅ Сборка завершена успешно!"
-        echo "📦 Файлы:"
-        ls -la build/libs/ || echo "Папка build/libs не найдена"
+        echo "✅ APK собран успешно!"
+        ls -la app/build/outputs/apk/release/ || echo "Папка не найдена"
