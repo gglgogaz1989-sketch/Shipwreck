@@ -1,44 +1,32 @@
-name: Android CI
+name: Build APK
 
 on:
   push:
-    branches: [ "main", "master" ]
-  pull_request:
-    branches: [ "main", "master" ]
+    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     
     steps:
-    - name: 📥 Checkout код
-      uses: actions/checkout@v4
+      - name: 📥 Скачать код
+        uses: actions/checkout@v4
       
-    - name: ☕ Установка Java 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        
-    - name: 🔧 Права на выполнение
-      run: chmod +x gradlew || true
+      - name: ☕ Установка Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
       
-    - name: 🔨 Сборка APK
-      run: |
-        if [ -f gradlew ]; then
-          ./gradlew assembleRelease --no-daemon
-        else
-          gradle assembleRelease --no-daemon
-        fi
+      - name: 🔧 Права на выполнение
+        run: chmod +x gradlew
       
-    - name: 📤 Загрузка APK
-      uses: actions/upload-artifact@v4
-      with:
-        name: MysteryIsland-APK
-        path: app/build/outputs/apk/release/*.apk
-        retention-days: 30
-        
-    - name: 📝 Информация о сборке
-      run: |
-        echo "✅ APK собран успешно!"
-        ls -la app/build/outputs/apk/release/ || echo "Папка не найдена"
+      - name: 🏗️ Сборка Debug APK
+        run: ./gradlew assembleDebug
+      
+      - name: 📦 Загрузка APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: MysteryIsland
+          path: app/build/outputs/apk/debug/app-debug.apk
