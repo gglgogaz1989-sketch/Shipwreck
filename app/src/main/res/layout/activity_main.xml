@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/background_dark">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Статус игрока -->
+            <TextView
+                android:id="@+id/statusText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="❤️ 100/100  🍖 80/100  💧 70/100"
+                android:textColor="@color/text_white"
+                android:textSize="20sp"
+                android:padding="16dp"
+                android:background="@color/background_medium"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Локация -->
+            <TextView
+                android:id="@+id/locationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="📍 Лес  X:500 Y:500"
+                android:textColor="@color/text_cyan"
+                android:textSize="18sp"
+                android:padding="12dp"
+                android:background="@color/background_light"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Что рядом -->
+            <TextView
+                android:id="@+id/surroundingsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Рядом: 🌲 🪨 🫐 🦌"
+                android:textColor="@color/text_white"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:background="@color/background_medium"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Инвентарь -->
+            <TextView
+                android:id="@+id/inventoryText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="📦 Инвентарь..."
+                android:textColor="@color/text_white"
+                android:textSize="14sp"
+                android:padding="12dp"
+                android:background="@color/background_medium"
+                android:minLines="4"
+                android:layout_marginBottom="16dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ДЖОЙСТИК (движение) -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ДВИЖЕНИЕ"
+        android:textColor="@color/text_yellow"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/btnNorth"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="↑ СЕВЕР"
+            android:textSize="10sp"
+            android:background="@color/accent_green"
+            android:textColor="@color/text_white"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnWest"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="← ЗАПАД"
+                android:textSize="10sp"
+                android:background="@color/accent_green"
+                android:textColor="@color/text_white"
+                android:layout_marginHorizontal="5dp"/>
+
+            <Button
+                android:id="@+id/btnSouth"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="↓ ЮГ"
+                android:textSize="10sp"
+                android:background="@color/accent_green"
+                android:textColor="@color/text_white"
+                android:layout_marginHorizontal="5dp"/>
+
+            <Button
+                android:id="@+id/btnEast"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:text="→ ВОСТОК"
+                android:textSize="10sp"
+                android:background="@color/accent_green"
+                android:textColor="@color/text_white"
+                android:layout_marginHorizontal="5dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ДЕЙСТВИЯ (ресурсы) -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ДЕЙСТВИЯ"
+        android:textColor="@color/text_yellow"
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnChop"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="🌲 РУБИТЬ"
+            android:background="@color/accent_orange"
+            android:textColor="@color/text_white"
+            android:layout_margin="3dp"/>
+
+        <Button
+            android:id="@+id/btnMine"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="🪨 КОПАТЬ"
+            android:background="@color/accent_orange"
+            android:textColor="@color/text_white"
+            android:layout_margin="3dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+
+        <Button
+            android:id="@+id/btnPick"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="🫐 СОБРАТЬ"
+            android:background="@color/accent_orange"
+            android:textColor="@color/text_white"
+            android:layout_margin="3dp"/>
+
+        <Button
+            android:id="@+id/btnHunt"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="🦌 ОХОТА"
+            android:background="@color/accent_orange"
+            android:textColor="@color/text_white"
+            android:layout_margin="3dp"/>
+    </LinearLayout>
+
+    <!-- ДЕЙСТВИЯ (выживание) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/btnRest"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="😴 ОТДЫХ"
+            android:background="@color/accent_blue"
+            android:textColor="@color/text_white"
+            android:layout_margin="3dp"/>
+
+        <Button
+            android:id="@+id/btnEat"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="🍖 ЕСТЬ"
+            android:background="@color/accent_blue"
+            android:textColor="@color/text_white"
+            android:layout_margin="3dp"/>
+    </LinearLayout>
+
+    <!-- КРАФТ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/btnCraft1"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="1️⃣ ТОПОР"
+            android:background="@color/accent_purple"
+            android:textColor="@color/text_white"
+            android:textSize="12sp"
+            android:layout_margin="2dp"/>
+
+        <Button
+            android:id="@+id/btnCraft2"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="2️⃣ КИРКА"
+            android:background="@color/accent_purple"
+            android:textColor="@color/text_white"
+            android:textSize="12sp"
+            android:layout_margin="2dp"/>
+
+        <Button
+            android:id="@+id/btnCraft3"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="3️⃣ КОСТЁР"
+            android:background="@color/accent_purple"
+            android:textColor="@color/text_white"
+            android:textSize="12sp"
+            android:layout_margin="2dp"/>
+
+        <Button
+            android:id="@+id/btnCraft4"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="4️⃣ ЛОДКА"
+            android:background="@color/accent_purple"
+            android:textColor="@color/text_white"
+            android:textSize="12sp"
+            android:layout_margin="2dp"/>
+    </LinearLayout>
+</LinearLayout><?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#1a1a2e">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- ТОЛЬКО ЦИФРЫ -->
+            <TextView
+                android:id="@+id/statusText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="❤️ 100/100"
+                android:textColor="#ffffff"
+                android:textSize="24sp"
+                android:padding="16dp"
+                android:background="#16213e"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/hungerText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🍖 80/100"
+                android:textColor="#ffffff"
+                android:textSize="24sp"
+                android:padding="16dp"
+                android:background="#16213e"
+                android:layout_marginBottom="4dp"/>
+
+            <!-- ГДЕ Я -->
+            <TextView
+                android:id="@+id/locationText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🌲 Лес"
+                android:textColor="#00ffff"
+                android:textSize="20sp"
+                android:padding="12dp"
+                android:background="#0f3460"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- КООРДИНАТЫ -->
+            <TextView
+                android:id="@+id/coordinatesText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="X:500 Y:500"
+                android:textColor="#888888"
+                android:textSize="16sp"
+                android:padding="8dp"
+                android:gravity="center"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- ЧТО РЯДОМ (просто список) -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Рядом:"
+                android:textColor="#ffff00"
+                android:textSize="18sp"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/treesText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🌲 Деревья"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:padding="4dp"
+                android:layout_marginLeft="16dp"/>
+
+            <TextView
+                android:id="@+id/stonesText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🪨 Камни"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:padding="4dp"
+                android:layout_marginLeft="16dp"/>
+
+            <TextView
+                android:id="@+id/berriesText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🫐 Ягоды"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:padding="4dp"
+                android:layout_marginLeft="16dp"/>
+
+            <TextView
+                android:id="@+id/animalsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🦌 Животные"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:padding="4dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- ИНВЕНТАРЬ -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Инвентарь:"
+                android:textColor="#ffff00"
+                android:textSize="18sp"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/inventoryText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="🪵 5\n🪨 3\n🫐 3"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:background="#16213e"
+                android:minLines="5"
+                android:lineSpacingExtra="4dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
